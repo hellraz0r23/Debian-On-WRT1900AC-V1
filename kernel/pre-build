@@ -1,0 +1,29 @@
+if [ -z "$VER" ]
+then
+	echo -e
+	echo -e "\t\tVER not define. Please fix kernel version"
+	echo -e "\t\texample:"
+	echo -e "\t\t\t\texport VER=4.6.2"
+	echo -e
+	exit	
+fi
+
+wget http://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${VER}.tar.xz
+tar xvfJ linux-${VER}.tar.xz
+cd linux-${VER}/drivers
+wget https://github.com/kaloz/mwlwifi/archive/master.zip
+unzip master
+mv mwlwifi-master/bin/firmware ../firmware/mwlwifi
+mv mwlwifi-master/ mwlwifi
+mv mwlwifi/Makefile.kernel mwlwifi/Makefile
+cd ..
+
+wget https://raw.githubusercontent.com/jbsky/McDebian/master/kernel/.config
+wget https://raw.githubusercontent.com/jbsky/McDebian/master/kernel/patch/fan.patch
+wget https://raw.githubusercontent.com/jbsky/McDebian/master/kernel/patch/mwlwifi.patch
+wget https://raw.githubusercontent.com/jbsky/McDebian/master/kernel/patch/nand_timeout.patch
+
+patch -p0 < mwlwifi.patch
+patch -p1 < fan.patch
+patch -p1 < nand_timeout.patch
+

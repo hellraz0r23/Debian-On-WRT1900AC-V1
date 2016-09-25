@@ -1,0 +1,22 @@
+if [ -z "$VER" ]
+then
+        echo -e
+        echo -e "\t\tVER not define. Please fix kernel version"
+        echo -e "\t\texample:"
+        echo -e "\t\t\t\texport VER=4.5.2"
+        echo -e
+        exit
+fi
+
+mkdir modules
+make ARCH=arm CROSS_COMPILE=arm-none-eabi- INSTALL_MOD_PATH=modules modules_install
+
+cat arch/arm/boot/zImage arch/arm/boot/dts/armada-xp-linksys-mamba.dtb > ./zImage-linksys-mamba
+mkimage -A arm -O linux -T kernel -C none -a 0x100000 -e 0x100000 -n "Kernel ${VER}" -d ./zImage-linksys-mamba ./firmware-WRT1900AC-V1
+
+echo -e
+echo -e "\t\tFirmware V1 ready!"
+echo -e "\t\tmodules copied to modules/"
+echo -e
+exit
+
