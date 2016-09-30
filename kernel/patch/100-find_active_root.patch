@@ -1,5 +1,5 @@
---- drivers/mtd/ofpart.c	2016-09-24 10:10:18.000000000 +0200
-+++ drivers/mtd/ofpart.c	2016-09-29 22:17:33.000000000 +0200
+--- a/drivers/mtd/ofpart.c	2016-09-24 10:10:18.000000000 +0200
++++ a/drivers/mtd/ofpart.c	2016-09-29 22:17:33.000000000 +0200
 @@ -25,6 +25,8 @@
  	return of_get_property(pp, "compatible", NULL);
  }
