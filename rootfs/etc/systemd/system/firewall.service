@@ -1,0 +1,11 @@
+[Unit]
+Description=firewall
+
+[Service]
+WorkingDirectory=/etc/firewall
+ExecStart=/etc/init.d/firewall start
+ExecStop=/etc/init.d/firewall stop
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
