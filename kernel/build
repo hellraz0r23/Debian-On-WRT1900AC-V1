@@ -1,3 +1,3 @@
-make ARCH=arm CROSS_COMPILE=arm-none-eabi- -j4 zImage
-make ARCH=arm CROSS_COMPILE=arm-none-eabi- -j4 dtbs
-make ARCH=arm CROSS_COMPILE=arm-none-eabi- -j4 modules
+make ARCH=arm CROSS_COMPILE=arm-none-eabi-  zImage
+make ARCH=arm CROSS_COMPILE=arm-none-eabi-  dtbs
+make ARCH=arm CROSS_COMPILE=arm-none-eabi-  modules
