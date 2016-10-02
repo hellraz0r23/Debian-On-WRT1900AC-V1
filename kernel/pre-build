@@ -9,7 +9,7 @@ then
 	exit	
 fi
 
-# wget http://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${VER}.tar.xz
+wget http://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${VER}.tar.xz
 tar xvfJ linux-${VER}.tar.xz
 rm linux
 ln -s linux-4.7.6 linux
