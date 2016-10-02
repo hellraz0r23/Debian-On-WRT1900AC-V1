@@ -4,7 +4,7 @@ Documentation=
 After=hostapd.service
 
 [Service]
-ExecStart=/etc/systemd/gpio_keys
+ExecStart=/usr/local/bin/gpio_keys
 Type=simple
 NonBlocking=yes
 
