@@ -17,7 +17,7 @@ Debian root files system is "Jessie" stable.
 Only for advertising user.
 
 I make a try : DHCP failover between wrt1900ac and firewall.
-
+<pre>
   +------+              +------+
   |      |              |      |
   |      +--------------+      |
@@ -25,7 +25,7 @@ I make a try : DHCP failover between wrt1900ac and firewall.
   +------+              +------+
   firewall              wrt1900ac
 192.168.10.1           192.168.10.10
-
+</pre>
 
 
 Firewall: The rules are inspired from ipfire rules, script from debian.org's forum.
