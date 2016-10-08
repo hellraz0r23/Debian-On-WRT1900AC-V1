@@ -1,4 +1,3 @@
-export VER=4.7.6
 if [ -z "$VER" ]
 then
         echo -e
@@ -6,7 +5,7 @@ then
         echo -e "\t\texample:"
         echo -e "\t\t\t\texport VER=4.7.5"
         echo -e
-        exit
+	export VER=4.8.1
 fi
 
 mkdir modules

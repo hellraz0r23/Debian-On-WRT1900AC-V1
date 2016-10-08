@@ -1,34 +1,39 @@
-VER=4.7.6
 if [ -z "$VER" ]
 then
+	VER=4.8.1
 	echo -e
-	echo -e "\t\tVER not define. Please fix kernel version"
+	echo -e "\t\tVER not define. Please fix it!"
 	echo -e "\t\texample:"
-	echo -e "\t\t\t\texport VER=4.6.2"
+	echo -e "\t\t\t\texport VER=${VER}"
 	echo -e
-	exit	
 fi
 
-wget http://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${VER}.tar.xz
+# wget http://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${VER}.tar.xz
 tar xvfJ linux-${VER}.tar.xz
 rm linux
-ln -s linux-4.7.6 linux
-cd linux-${VER}/drivers
+ln -s linux-${VER} linux
+cd linux-${VER}/
 wget https://github.com/kaloz/mwlwifi/archive/master.zip
 unzip master
-mv mwlwifi-master/bin/firmware ../firmware/mwlwifi
-mv mwlwifi-master/ mwlwifi
-mv mwlwifi/Makefile.kernel mwlwifi/Makefile
-cd ..
+rm master.zip
+mv mwlwifi-master/bin/firmware firmware/mwlwifi
+mv mwlwifi-master/ drivers/mwlwifi
+mv drivers/mwlwifi/Makefile.kernel drivers/mwlwifi/Makefile
+
 wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/.config
 wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/fan.patch
 wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/mwlwifi.patch
 wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/nand_timeout.patch
-wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/002-add_mamba_powertables.patch
-wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/100-find_active_root.patch
+wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/add_mamba_powertables.patch
+wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/find_active_root.patch
+wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/mac80211.patch
+wget https://raw.githubusercontent.com/jbsky/Debian-On-WRT1900AC-V1/master/kernel/patch/softirq.patch
+
 
 patch -p0 < mwlwifi.patch 
 patch -p1 < fan.patch 
 patch -p1 < nand_timeout.patch 
-patch -p1 < 002-add_mamba_powertables.patch
-patch -p1 < 100-find_active_root.patch
+patch -p1 < add_mamba_powertables.patch
+patch -p1 < find_active_root.patch
+patch -p1 < mac80211.patch
+patch -p1 < softirq.patch
